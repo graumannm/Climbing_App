@@ -66,7 +66,6 @@ sorted_routes = sorted_routes.sort_values(by=['rating_tot'],ascending=False)
 # rename columns
 sorted_routes = sorted_routes.rename(columns={"crag": "Crag", "sector": "Sector", "name": "Name",
                                             "tall_recommend_sum": "Preferred by Tall",
-                                            'grade_mean': "Mean Grade",
                                              "rating_tot": "Average Rating"})
 
 # convert final grading to french grading
