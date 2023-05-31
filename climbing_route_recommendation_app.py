@@ -8,6 +8,15 @@ routes = pd.read_csv("./climbing_dataset/routes_rated.csv")
 # simplify df a bit
 routes.drop(['Unnamed: 0','name_id'],axis=1,inplace=True)
 
+# determine numerical grade from French input grade
+# take french grade as input, convert to list for streamlit and then to integer for filtering
+grades    = pd.read_csv("./climbing_dataset/grades_conversion_table.csv")
+list_text = grades.grade_fra.tolist()
+fra_grade = st.selectbox('What is your preferred climbing grade', list_text) 
+
+# now retrieve int value from conversion table
+my_grade = grades.loc[grades['grade_fra'] == fra_grade].index[0]
+
 # select best route for short climbers in Germany
 my_country = st.selectbox('Which country are you from?',
                        ['and', 'arg', 'aus', 'aut', 'bel', 'bgr', 'bih', 'bra', 'can',
@@ -18,7 +27,6 @@ my_country = st.selectbox('Which country are you from?',
                         'rom', 'rus', 'srb', 'svk', 'svn', 'swe', 'tha', 'tur', 'twn',
                         'ukr', 'usa', 'ven', 'vnm', 'zaf']) 
 tallness   = st.selectbox('Are you 1.80 m tall or more?',['Yes','No'])
-my_grade   = st.slider('What is your preferred climbing grade',min_value=0, max_value=72)
 st.write('Please select your preference: \
     0 - Soft routes 1 - Routes for some reason preferred by women \
 2 - Famouse routes \
