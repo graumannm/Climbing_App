@@ -69,5 +69,18 @@ sorted_routes = sorted_routes.rename(columns={"crag": "Crag", "sector": "Sector"
                                             'grade_mean': "Mean Grade",
                                              "rating_tot": "Average Rating"})
 
+# convert final grading to french grading
+
+# round grade mean to int
+sorted_routes = sorted_routes.round({'grade_mean': 0})
+grades = pd.read_csv("./climbing_dataset/grades_conversion_table.csv")
+
+my_grade = list(np.zeros(len(sorted_routes['grade_mean'])))
+for i, r in enumerate(sorted_routes['grade_mean']):
+    my_grade[i] = str(grades.loc[int(r), 'grade_fra'])
+
+sorted_routes['french_grades'] = my_grade
+sorted_routes.drop('grade_mean',axis=1,inplace=True)
+
 if st.button('Show recommended routes'):
     st.table(sorted_routes)
