@@ -18,7 +18,7 @@ fra_grade = st.selectbox('What is your preferred climbing grade', list_text)
 my_grade = grades.loc[grades['grade_fra'] == fra_grade].index[0]
 
 # select best route for short climbers in Germany
-my_country = st.selectbox('Which country are you from?',
+my_country = st.selectbox('In which country would you like to go climbing?',
                        ['and', 'arg', 'aus', 'aut', 'bel', 'bgr', 'bih', 'bra', 'can',
                         'che', 'chl', 'chn', 'col', 'cze', 'deu', 'dnk', 'ecu', 'esp',
                         'fin', 'fra', 'gbr', 'grc', 'hrv', 'hun', 'ind', 'isl', 'isr',
@@ -26,15 +26,15 @@ my_country = st.selectbox('Which country are you from?',
                         'nld', 'nor', 'nzl', 'per', 'phl', 'pol', 'pri', 'prt', 'reu',
                         'rom', 'rus', 'srb', 'svk', 'svn', 'swe', 'tha', 'tur', 'twn',
                         'ukr', 'usa', 'ven', 'vnm', 'zaf']) 
-tallness   = st.selectbox('Are you 1.80 m tall or more?',['Yes','No'])
+tallness   = st.selectbox('Are you 1.80 m or taller',['Yes','No'])
 st.write('Please select your preference: \
     0 - Soft routes 1 - Routes for some reason preferred by women \
 2 - Famouse routes \
 3 - Very hard routes \
 4 - Very repeated routes \
 5 - Chipped routes, with soft rate \
-6 - Traditiona, not chipped routes \
-7 - Easy to On-sight routes, not very repeated \
+6 - Traditional, not chipped routes \
+7 - Easy to on-sight routes, not very repeated \
 8 - Very famouse routes but not so repeated and not so traditional')
 cluster    = st.slider('Please select your preference',min_value=0, max_value=8)
 
